@@ -1,0 +1,5 @@
+<div class="controls">
+	<ul class="controls-list">
+		<li *ngFor="let control of controls" [ngClass]="{ 'control-disabled':!state[control?.slug] }" (click)="set(control)">{{ control?.title }}</li>
+	</ul>
+</div>

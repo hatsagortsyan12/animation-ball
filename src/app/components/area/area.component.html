@@ -1,0 +1,4 @@
+<div [ngStyle]="{ 'width': width + 'px', 'height': height + 'px' }" class="area">
+	<app-ball [action]="actionValue" [width]="width" [height]="height"></app-ball>
+</div>
+<app-controls (control)="action($event)"></app-controls>
