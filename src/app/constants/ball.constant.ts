@@ -1,4 +1,6 @@
-export class Ball {
-	static readonly WIDTH = 70;
-	static readonly HEIGHT = 70;
-}
+import { IBallOptions } from '@interfaces/.';
+
+export const BALL_OPTIONS = <IBallOptions> {
+	width: 70,
+	height: 70
+};

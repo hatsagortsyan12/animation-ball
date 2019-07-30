@@ -15,22 +15,6 @@ export class ControlsComponent implements OnInit {
 	@Output('control') control: EventEmitter<IControl> = new EventEmitter<IControl>();
 
 	constructor() {
-		this.stop();
-	}
-
-	ngOnInit() {
-	}
-
-	private start(): void {
-		this.state = {
-			start: false,
-			stop: true,
-			pause: true,
-			play: false
-		};
-	}
-
-	private stop(): void {
 		this.state = {
 			start: true,
 			stop: false,
@@ -39,30 +23,49 @@ export class ControlsComponent implements OnInit {
 		};
 	}
 
-	private pause(): void {
-		this.state = {
-			start: false,
-			stop: true,
-			pause: false,
-			play: true
-		};
-	}
-
-	private play(): void {
-		this.state = {
-			start: false,
-			stop: true,
-			pause: true,
-			play: false
-		};
+	ngOnInit() {
 	}
 
 	public set(control: IControl): void {
+		switch (control.slug) {
+			case 'start':
+				this.state = {
+					start: false,
+					stop: true,
+					pause: true,
+					play: false
+				};
+				break;
+			case 'stop':
+				this.state = {
+					start: true,
+					stop: false,
+					pause: false,
+					play: false
+				};
+				break;
+			case 'pause':
+				this.state = {
+					start: false,
+					stop: true,
+					pause: false,
+					play: true
+				};
+				break;
+			case 'play':
+				this.state = {
+					start: false,
+					stop: true,
+					pause: true,
+					play: false
+				};
+				break;
+		}
+
 		if (!this.state[control.slug]) {
 			return;
 		}
 
-		this[control.slug]();
 		this.control.emit(control);
 	}
 

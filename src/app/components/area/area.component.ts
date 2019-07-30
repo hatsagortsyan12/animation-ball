@@ -12,12 +12,12 @@ export class AreaComponent implements OnInit {
 
 	constructor() { }
 
-	@Input('width') width: number = Area.WIDTH;
-	@Input('height') height: number = Area.HEIGHT;
+	@Input() width: number = Area.WIDTH;
+	@Input() height: number = Area.HEIGHT;
 
 	actionValue: string = null;
 
-	public action(control: IControl) {
+	public action(control: IControl): void {
 		this.actionValue = control.slug;
 	}
 

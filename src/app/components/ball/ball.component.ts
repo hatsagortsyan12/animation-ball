@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
 
-import { IBall } from '@interfaces/.';
-import { Ball } from '@constants/.';
+import { IBall, IBallOptions } from '@interfaces/.';
+import { BALL_OPTIONS } from '@constants/.';
 
 @Component({
 	selector: 'app-ball',
@@ -41,8 +41,7 @@ export class BallComponent implements OnInit {
 	currentAction: string;
 
 	ball: IBall;
-	ballW: number = Ball.WIDTH;
-	ballH: number = Ball.HEIGHT;
+	ballOptions: IBallOptions = BALL_OPTIONS;
 
 	constructor() { }
 
