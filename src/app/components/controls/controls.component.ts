@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { IState, IControl } from '@interfaces/.';
 import { Control } from '@constants/.';
+import { ActionService } from '@services/.';
 
 @Component({
 	selector: 'app-controls',
@@ -12,9 +13,8 @@ export class ControlsComponent implements OnInit {
 
 	state: IState;
 	controls: IControl[] = Control.CONTROLS_DATA;
-	@Output('control') control: EventEmitter<IControl> = new EventEmitter<IControl>();
 
-	constructor() {
+	constructor(private action: ActionService) {
 		this.state = {
 			start: true,
 			stop: false,
@@ -62,11 +62,7 @@ export class ControlsComponent implements OnInit {
 				break;
 		}
 
-		if (!this.state[control.slug]) {
-			return;
-		}
-
-		this.control.emit(control);
+		this.action.changeAction(control);
 	}
 
 }

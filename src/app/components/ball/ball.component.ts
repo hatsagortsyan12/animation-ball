@@ -3,6 +3,7 @@ import { trigger, transition, animate, keyframes, style, state } from '@angular/
 
 import { IBall, IBallOptions } from '@interfaces/.';
 import { BALL_OPTIONS } from '@constants/.';
+import { ActionService } from '@services/.';
 
 @Component({
 	selector: 'app-ball',
@@ -31,21 +32,18 @@ export class BallComponent implements OnInit {
 
 	@Input() width: number;
 	@Input() height: number;
-	@Input()
-	set action(action: string) {
-		if (action) {
-			this.currentAction = action;
-		}
-	}
 
 	currentAction: string;
 
 	ball: IBall;
 	ballOptions: IBallOptions = BALL_OPTIONS;
 
-	constructor() { }
+	constructor(private action: ActionService) { }
 
 	ngOnInit() {
+		this.action.currentAction.subscribe(action => {
+			this.currentAction = action.slug;
+		});
 	}
 
 }

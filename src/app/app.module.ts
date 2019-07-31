@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AreaComponent, ControlsComponent, BallComponent } from '@components/.';
+import { ActionService } from '@services/.';
 
 @NgModule({
 	declarations: [
@@ -16,7 +17,9 @@ import { AreaComponent, ControlsComponent, BallComponent } from '@components/.';
 		BrowserModule,
 		BrowserAnimationsModule
 	],
-	providers: [],
+	providers: [
+		ActionService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
