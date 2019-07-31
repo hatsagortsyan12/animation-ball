@@ -27,6 +27,10 @@ export class ControlsComponent implements OnInit {
 	}
 
 	public set(control: IControl): void {
+		if (!this.state[control.slug]) {
+			return;
+		}
+
 		switch (control.slug) {
 			case 'start':
 				this.state = {
