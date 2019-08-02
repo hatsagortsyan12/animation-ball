@@ -1,4 +1,4 @@
-<div [ngStyle]="{ 'width': width + 'px', 'height': height + 'px' }" class="area">
-	<app-ball [width]="width" [height]="height"></app-ball>
+<div [ngStyle]="{ 'width': settings.width + 'px', 'height': settings.height + 'px' }" class="area">
+	<app-ball [areaSettings]="settings"></app-ball>
 </div>
 <app-controls></app-controls>

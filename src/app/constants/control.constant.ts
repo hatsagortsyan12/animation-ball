@@ -24,3 +24,10 @@ export class Control {
 		}
 	];
 }
+
+export enum ControlSequence {
+	start = 'start',
+	stop = 'stop',
+	pause = 'pause',
+	play = 'play',
+}

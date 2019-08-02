@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { IState, IControl } from '@interfaces/.';
-import { Control } from '@constants/.';
+import { Control, ControlSequence } from '@constants/.';
 import { ActionService } from '@services/.';
 
 @Component({
@@ -32,7 +32,7 @@ export class ControlsComponent implements OnInit {
 		}
 
 		switch (control.slug) {
-			case 'start':
+			case ControlSequence.start:
 				this.state = {
 					start: false,
 					stop: true,
@@ -40,7 +40,7 @@ export class ControlsComponent implements OnInit {
 					play: false
 				};
 				break;
-			case 'stop':
+			case ControlSequence.stop:
 				this.state = {
 					start: true,
 					stop: false,
@@ -48,7 +48,7 @@ export class ControlsComponent implements OnInit {
 					play: false
 				};
 				break;
-			case 'pause':
+			case ControlSequence.pause:
 				this.state = {
 					start: false,
 					stop: true,
@@ -56,7 +56,7 @@ export class ControlsComponent implements OnInit {
 					play: true
 				};
 				break;
-			case 'play':
+			case ControlSequence.play:
 				this.state = {
 					start: false,
 					stop: true,

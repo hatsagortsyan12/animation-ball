@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { IControl } from '@interfaces/.';
+import { IControl, IArea } from '@interfaces/.';
 import { Area } from '@constants/.';
 
 @Component({
@@ -12,8 +12,7 @@ export class AreaComponent implements OnInit {
 
 	constructor() { }
 
-	@Input() width: number = Area.WIDTH;
-	@Input() height: number = Area.HEIGHT;
+	settings: IArea = Area;
 
 	ngOnInit() {
 	}

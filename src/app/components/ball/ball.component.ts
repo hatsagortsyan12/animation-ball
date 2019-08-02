@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
 
-import { IBall, IBallOptions } from '@interfaces/.';
+import { IBall, IBallOptions, IArea } from '@interfaces/.';
 import { BALL_OPTIONS } from '@constants/.';
 import { ActionService } from '@services/.';
 
@@ -30,20 +30,20 @@ import { ActionService } from '@services/.';
 })
 export class BallComponent implements OnInit {
 
-	@Input() width: number;
-	@Input() height: number;
+	@Input() areaSettings: IArea;
 
 	currentAction: string;
 
 	ball: IBall;
 	ballOptions: IBallOptions = BALL_OPTIONS;
 
-	constructor(private action: ActionService) { }
-
-	ngOnInit() {
+	constructor(private action: ActionService) {
 		this.action.currentAction.subscribe(action => {
 			this.currentAction = action.slug;
 		});
+	}
+
+	ngOnInit() {
 	}
 
 }

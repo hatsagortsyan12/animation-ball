@@ -1,4 +1,6 @@
-export class Area {
-	static readonly WIDTH = 600;
-	static readonly HEIGHT = 400;
-}
+import { IArea } from '@interfaces/.';
+
+export const Area = <IArea> {
+	width: 600,
+	height: 400
+};
