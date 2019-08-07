@@ -1,4 +1,4 @@
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,8 +15,7 @@ import { ActionService } from '@services/.';
 	],
 	imports: [
 		BrowserModule,
-		BrowserAnimationsModule,
-		NoopAnimationsModule
+		BrowserAnimationsModule
 	],
 	providers: [
 		ActionService

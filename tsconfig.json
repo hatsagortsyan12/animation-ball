@@ -33,6 +33,9 @@
 			],
 			"@constants/*": [
         "app/constants/*"
+      ],
+			"@animations/*": [
+        "app/animations/*"
       ]
 		}
   }

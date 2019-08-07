@@ -1,9 +1,10 @@
-import { AnimationBuilder, AnimationPlayer, trigger, transition, animate, keyframes, style, state } from '@angular/animations';
+import { useAnimation, AnimationBuilder, AnimationPlayer } from '@angular/animations';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 import { IBall, IBallOptions, IArea } from '@interfaces/.';
-import { BALL_OPTIONS } from '@constants/.';
+import { BALL_OPTIONS, ControlSequence } from '@constants/.';
 import { ActionService } from '@services/.';
+import { BallAnimation } from '@animations/.';
 
 @Component({
 	selector: 'app-ball',
@@ -20,6 +21,8 @@ export class BallComponent implements OnInit {
 	ballOptions: IBallOptions = BALL_OPTIONS;
 
 	private player: AnimationPlayer;
+	private left: number;
+	private bottom: number;
 
 	@ViewChild('animationElement') elementRef: ElementRef;
 
@@ -27,38 +30,59 @@ export class BallComponent implements OnInit {
 		private action: ActionService,
 		private animationBuilder: AnimationBuilder
 	) {
-		// tslint:disable-next-line: no-shadowed-variable
 		this.action.currentAction.subscribe(action => {
 			this.currentAction = action.slug;
+			if (this.player) {
+				this.animationControl();
+			}
 		});
 	}
 
-	createPlayer() {
+	ngOnInit() {
+		this.left = this.areaSettings.width - this.ballOptions.width;
+		this.bottom = this.areaSettings.height - this.ballOptions.height;
+		this.createPlayer();
+	}
+
+	createPlayer(): void {
 		if (this.player) {
 			this.player.destroy();
 		}
 
 		let animationFactory = this.animationBuilder
-			.build([
-				style({ width: 0 }),
-				animate(1000, style({ width: '200px' })),
-			]);
+			.build(useAnimation(BallAnimation, {
+				params: {
+					left: this.left + 'px',
+					bottom: this.bottom + 'px',
+					speed: '0.5s'
+				}
+			}));
 
 		this.player = animationFactory.create(this.elementRef.nativeElement, {});
-		this.player.play();
 	}
 
-	ngOnInit() {
-		if (this.player) {
-			this.player.destroy();
-		} else {
-			this.createPlayer();
+	animateBall(): void {
+		this.player.restart();
+		this.player.onDone(() => {
+			this.animateBall();
+		});
+	}
+
+	animationControl(): void {
+		switch (this.currentAction) {
+			case ControlSequence.start:
+				this.animateBall();
+				break;
+			case ControlSequence.stop:
+				this.player.reset();
+				break;
+			case ControlSequence.pause:
+				this.player.pause();
+				break;
+			case ControlSequence.play:
+				this.player.play();
+				break;
 		}
-	}
-
-	play(): void {
-		this.player.play();
-		console.log(this.player);
 	}
 
 }

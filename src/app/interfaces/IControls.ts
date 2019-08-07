@@ -6,7 +6,6 @@ export interface IState {
 }
 
 export interface IControl {
-	id: number;
 	title: string;
 	slug: string;
 }
