@@ -19,7 +19,9 @@ export class ControlsComponent implements OnInit {
 			start: true,
 			stop: false,
 			pause: false,
-			play: false
+			play: false,
+			up: true,
+			down: true
 		};
 	}
 
@@ -37,7 +39,9 @@ export class ControlsComponent implements OnInit {
 					start: false,
 					stop: true,
 					pause: true,
-					play: false
+					play: false,
+					up: true,
+					down: true
 				};
 				break;
 			case ControlSequence.stop:
@@ -45,7 +49,9 @@ export class ControlsComponent implements OnInit {
 					start: true,
 					stop: false,
 					pause: false,
-					play: false
+					play: false,
+					up: true,
+					down: true
 				};
 				break;
 			case ControlSequence.pause:
@@ -53,7 +59,9 @@ export class ControlsComponent implements OnInit {
 					start: false,
 					stop: true,
 					pause: false,
-					play: true
+					play: true,
+					up: true,
+					down: true
 				};
 				break;
 			case ControlSequence.play:
@@ -61,7 +69,9 @@ export class ControlsComponent implements OnInit {
 					start: false,
 					stop: true,
 					pause: true,
-					play: false
+					play: false,
+					up: true,
+					down: true
 				};
 				break;
 		}

@@ -17,6 +17,14 @@ export class Control {
 		{
 			title: 'Play',
 			slug: 'play'
+		},
+		{
+			title: 'Up',
+			slug: 'up'
+		},
+		{
+			title: 'Down',
+			slug: 'down'
 		}
 	];
 }
@@ -25,5 +33,7 @@ export enum ControlSequence {
 	start = 'start',
 	stop = 'stop',
 	pause = 'pause',
-	play = 'play'
+	play = 'play',
+	up = 'up',
+	down = 'down',
 }

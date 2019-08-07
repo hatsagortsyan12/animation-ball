@@ -3,6 +3,8 @@ export interface IState {
 	stop: boolean;
 	pause: boolean;
 	play: boolean;
+	up: boolean;
+	down: boolean;
 }
 
 export interface IControl {

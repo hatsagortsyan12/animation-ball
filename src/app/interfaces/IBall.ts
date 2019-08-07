@@ -6,4 +6,8 @@ export interface IBall {
 export interface IBallOptions {
 	width: number;
 	height: number;
+	minSpeed: number;
+	maxSpeed: number;
+	defaultSpeed: number;
+	rateSpeed: number;
 }

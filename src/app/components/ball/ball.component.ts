@@ -23,6 +23,7 @@ export class BallComponent implements OnInit {
 	private player: AnimationPlayer;
 	private left: number;
 	private bottom: number;
+	private speed: number;
 
 	@ViewChild('animationElement') elementRef: ElementRef;
 
@@ -35,12 +36,14 @@ export class BallComponent implements OnInit {
 			if (this.player) {
 				this.animationControl();
 			}
+			console.log(this.speed)
 		});
 	}
 
 	ngOnInit() {
 		this.left = this.areaSettings.width - this.ballOptions.width;
 		this.bottom = this.areaSettings.height - this.ballOptions.height;
+		this.speed = this.ballOptions.defaultSpeed;
 		this.createPlayer();
 	}
 
@@ -54,7 +57,7 @@ export class BallComponent implements OnInit {
 				params: {
 					left: this.left + 'px',
 					bottom: this.bottom + 'px',
-					speed: '0.5s'
+					speed: this.speed + 's'
 				}
 			}));
 
@@ -81,6 +84,18 @@ export class BallComponent implements OnInit {
 				break;
 			case ControlSequence.play:
 				this.player.play();
+				break;
+			case ControlSequence.up:
+				this.speed = this.speed + this.ballOptions.rateSpeed <= this.ballOptions.maxSpeed
+					? this.speed + this.ballOptions.rateSpeed
+					: this.speed;
+				this.createPlayer();
+				break;
+			case ControlSequence.down:
+				this.speed = this.speed - this.ballOptions.rateSpeed >= this.ballOptions.minSpeed
+					? this.speed - this.ballOptions.rateSpeed
+					: this.speed;
+				this.createPlayer();
 				break;
 		}
 	}
